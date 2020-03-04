@@ -1,4 +1,4 @@
-# What Cheer
+# What Cheer :sunny:
 
 What Cheer is a gratitude journal. Gratitude journaling has shown an ability to improve the author’s happiness and life satisfaction, reduce stress levels, and reduce depressive symptoms. We are constantly bombarded with negativity from our TVs, our news feeds, and the people we interact with daily. In today’s fast-paced world, What Cheer lets users slow down, practice mindfulness, and reflect on the positive aspects of their lives. 
 
