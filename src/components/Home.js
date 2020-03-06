@@ -10,16 +10,16 @@ function Home() {
 
   useEffect(() => {
     if (user) {
-      const url = `${APIURL}/entries`;
+      const url = `${APIURL}/entries/`;
       fetch(url, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${user.token}`
+          Authorization: `JWT ${user.token}`
         }
       })
         .then(res => res.json())
         .then(data => {
-          setEntries(data);
+          setEntries(data.reverse());
         })
         .catch(() => {
           setError(true);
@@ -42,6 +42,7 @@ function Home() {
   }
   return (
       <div className="journal">
+        <Link to='/new'><h2>What are you grateful for today?</h2></Link>
           {error && <div>Sorry, there was an error getting the journal entries!</div>}
           {!error && !entries.length ? (
               <>
@@ -51,7 +52,7 @@ function Home() {
           ) : (
               entries.map(entry => (
                   <div className="journalEntry" key={entry.id}>
-                      <Link to={`/entries/${entry.id}`}>
+                      <Link to={`/entries/${entry.id}/`}>
                       <h3>{entry.date}</h3>
                       </Link>
                       <p>{entry.entry}</p>

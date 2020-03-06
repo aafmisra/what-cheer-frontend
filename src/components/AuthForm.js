@@ -6,19 +6,15 @@ function AuthForm({ credentials, handleChange, handleSubmit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      {location.pathname === '/signup' && (
-        <>
-          <label htmlFor="name">Name:</label>
-          <input
-            name="name"
-            value={credentials.name}
-            onChange={handleChange}
-            id="name"
-            type="text"
-            required
-          ></input>
-        </>
-      )}
+      <label htmlFor="username">Username:</label>
+      <input
+        name="username"
+        value={credentials.username}
+        onChange={handleChange}
+        id="username"
+        type="text"
+        required
+      ></input>
       <label htmlFor="email">Email:</label>
       <input
         name="email"

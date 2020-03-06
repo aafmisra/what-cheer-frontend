@@ -5,11 +5,11 @@ import { APIURL } from '../config';
 
 function Signup() {
   const initialState = {
-    name: '',
+    username: '',
     email: '',
     password: ''
   };
-  const url = `${APIURL}/signup`;
+  const url = `${APIURL}/users/`;
   const [credentials, setCredentials] = useState(initialState);
   const [redirect, setRedirect] = useState(null);
   const [error, setError] = useState(false);

@@ -6,12 +6,13 @@ function ShowEntry({ match }) {
   const { user } = useContext(UserContext);
   const [entry, setEntry] = useState(null);
   const [error, setError] = useState(false);
+
   useEffect(() => {
     const url = `${APIURL}/entries/${match.params.id}/`;
     fetch(url, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${user.token}`
+        Authorization: `JWT ${user.token}`
       }
     })
       .then(res => res.json())
@@ -29,13 +30,10 @@ function ShowEntry({ match }) {
     <div>
       {error && <p>Sorry something's gone wrong.</p>}
       {!error && entry && (
-        <>
-          <Header />
           <div>
-              <h3>Hello, "name"! What are you grateful for today?</h3>
-              <h5>Today's date: "date"</h5>
+              <h3>{entry.date}</h3>
+              <p>{entry.entry}</p>
           </div>
-        </>
       )}
     </div>
   );

@@ -12,7 +12,7 @@ function SignIn(props) {
     email: historyState ? historyState.email : '',
     password: historyState ? historyState.password : ''
   };
-  const url = `${APIURL}/api/token`;
+  const url = `${APIURL}/token-auth/`;
   const [credentials, setCredentials] = useState(initialState);
   const [error, setError] = useState(false);
   const handleChange = event => {
