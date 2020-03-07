@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../UserContext";
 import { APIURL } from "../config";
-import Header from './Header'
+import { Link } from 'react-router-dom';
+
 function ShowEntry({ match }) {
   const { user } = useContext(UserContext);
   const [entry, setEntry] = useState(null);
@@ -33,6 +34,7 @@ function ShowEntry({ match }) {
           <div>
               <h3>{entry.date}</h3>
               <p>{entry.entry}</p>
+          <Link to={`/entries/${match.params.id}/edit/`}>Edit</Link>
           </div>
       )}
     </div>

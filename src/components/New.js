@@ -8,11 +8,12 @@ function New() {
     const { user } = useContext(UserContext);
     const initialState = {
         owner: '',
-        date: 'date default',
+        date: '',
         entry: ''
     }
     const [entry, setEntry] = useState(initialState);
     const [createdId, setCreatedId] = useState(null);
+    const [error, setError] = useState(false);
 
     const handleChange = function (event) {
         event.persist();
@@ -37,8 +38,9 @@ function New() {
             .then(data => {
                 setCreatedId(data.id);
             })
-            // Make sure to handle this case with some user feedback!
-            .catch(console.log);
+            .catch(() => {
+                setError(true);
+            });
     }
 
     //if id was created successfully, redirect user back to homepage
@@ -46,7 +48,7 @@ function New() {
         return (
             <Redirect
                 to={{
-                    pathname: '/entries/',
+                    pathname: '/',
                     state: {
                         id: createdId
                     }
@@ -55,6 +57,10 @@ function New() {
         );
     }
 
+    //returns error message if entry wasn't created
+    if (error) {
+        return <div>Oops, there was a problem adding the journal entry.</div>;
+    }
 
     return (
         <div>

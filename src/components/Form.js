@@ -4,8 +4,8 @@ function Form({ entry, handleChange, handleSubmit }) {
   return (
     <form onSubmit={handleSubmit}>
       {/* want to be able to have default to today's date */}
-      <input type="date"  onChange={handleChange} name="date"/>
-      <textarea cols="5" rows="50" onChange={handleChange} name="entry"/>
+      <input type="date"  onChange={handleChange} name="date" value={entry.date}/>
+      <textarea cols="20" rows="40" onChange={handleChange} name="entry" value={entry.entry}/>
       <input type='submit' />
     </form>
   );
