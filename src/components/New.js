@@ -12,8 +12,10 @@ function New() {
         entry: ''
     }
     const [entry, setEntry] = useState(initialState);
+    const [prompt, setPrompt] = useState(null);
     const [createdId, setCreatedId] = useState(null);
     const [error, setError] = useState(false);
+    const [promptError, setPromptError] = useState(false);
 
     const handleChange = function (event) {
         event.persist();
@@ -43,6 +45,24 @@ function New() {
             });
     }
 
+    function getPrompt() {
+        let id = Math.floor(Math.random() * 11 + 1);
+        const url = `${APIURL}/prompts/${id}/`;
+        fetch(url, {
+          method: 'GET',
+          headers: {
+            Authorization: `JWT ${user.token}`
+          }
+        })
+          .then(res => res.json())
+          .then(data => {
+            setPrompt(data.prompt);
+          })
+          .catch(() => {
+            setPromptError(true);
+          });
+    }
+
     //if id was created successfully, redirect user back to homepage
     if (createdId) {
         return (
@@ -57,14 +77,34 @@ function New() {
         );
     }
 
+    if (promptError) {
+        return <div>Oops, we're fresh out of ideas!</div>;
+    }
+
     //returns error message if entry wasn't created
     if (error) {
         return <div>Oops, there was a problem adding the journal entry.</div>;
     }
 
+    if (prompt){
+        return (
+          <div>
+            <Form
+              entry={entry}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+            />
+            <p>{prompt}</p>
+            <button onClick={getPrompt}>Click For An Idea</button>
+          </div>
+        );
+        
+    }
+
     return (
         <div>
             <Form entry={entry} handleChange={handleChange} handleSubmit={handleSubmit}/>
+            <button onClick={getPrompt}>Click For An Idea</button>
         </div>
     )
 }
