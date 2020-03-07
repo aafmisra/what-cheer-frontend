@@ -2,7 +2,9 @@ import React, { useState, useContext, useEffect } from 'react'
 import { Redirect } from 'react-router-dom';
 import { APIURL } from '../config';
 import { UserContext } from '../UserContext';
-import Form from './Form'
+// import Form from './Form'
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function Edit({ match }) {
     const { user } = useContext(UserContext);
@@ -16,6 +18,7 @@ function Edit({ match }) {
     const [deleted, setDeleted] = useState(false);
     const [edited, setEdited] = useState(null);
     const [error, setError] = useState(false);
+    const [startDate, setStartDate] = useState(entry.date);
 
     useEffect(() => {
         fetch(url, {
@@ -26,10 +29,11 @@ function Edit({ match }) {
             }})
             .then(response => response.json())
             .then(setEntry)
+            .then(console.log(entry))
             .catch(() => {
                 setError(true);
             });
-    }, []);
+    }, [entry, url, user.token]);
 
     const handleChange = function (event) {
         event.persist();
@@ -86,12 +90,31 @@ function Edit({ match }) {
     }
 
 
-    return (
-        <div>
-            <Form entry={entry} handleChange={handleChange} handleSubmit={handleSubmit} />
-            <button onClick={deleteEntry}>Delete</button>
-        </div>
-    )
+    // return (
+    //     <div>
+    //         <Form entry={entry} handleChange={handleChange} handleSubmit={handleSubmit} />
+    //         <button onClick={deleteEntry}>Delete</button>
+    //     </div>
+    // )
+    
+     return (
+       <form onSubmit={handleSubmit}>
+         {/* want to be able to have default to today's date */}
+         <DatePicker
+           selected={startDate}
+           onChange={date => setStartDate(date)}
+           // defaultValue={defaultValue}
+         />
+         <textarea
+           cols="20"
+           rows="40"
+           onChange={handleChange}
+           name="entry"
+           value={entry.entry}
+         />
+         <input type="submit" />
+       </form>
+     );
 }
 
 export default Edit

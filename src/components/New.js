@@ -6,9 +6,10 @@ import Form from './Form'
 
 function New() {
     const { user } = useContext(UserContext);
+    // const today = new Date();
     const initialState = {
         owner: '',
-        date: '',
+        date: Date(),
         entry: ''
     }
     const [entry, setEntry] = useState(initialState);
