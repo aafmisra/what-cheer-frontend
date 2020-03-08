@@ -94,8 +94,8 @@ function New() {
               handleChange={handleChange}
               handleSubmit={handleSubmit}
             />
-            <p>{prompt}</p>
             <button onClick={getPrompt}>Click For An Idea</button>
+            <span>{prompt}</span>
           </div>
         );
         
