@@ -4,8 +4,8 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
 import New from './components/New';
-import Edit from './components/Edit'
-import ShowEntry from './components/ShowEntry'
+import Edit from './components/Edit';
+import ShowEntry from './components/ShowEntry';
 import SignIn from './components/Signin';
 import SignUp from './components/Signup';
 
@@ -15,7 +15,9 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider value={{ user, setUser }}>
-        <Header />
+        <header>
+          <Header />
+        </header>
         <main>
           <Switch>
             <Route path="/signup" component={SignUp} />
@@ -43,7 +45,7 @@ function App() {
                 }
               }}
             />
-            <Route path='/new' component={New}/>
+            <Route path="/new" component={New} />
             <Route
               exact
               path="/entries/:id/edit/"

@@ -7,6 +7,7 @@ function Home() {
   const { user } = useContext(UserContext);
   const [entries, setEntries] = useState([]);
   const [error, setError] = useState(false);
+  const today = new Date().toDateString()
 
   useEffect(() => {
     if (user) {
@@ -32,34 +33,39 @@ function Home() {
   if (!user) {
     return (
       <div>
-        <h1>Welcome to What Cheer!</h1>
+        <h2>Welcome to your digital daily gratitude journal.</h2>
         <p>
-          <Link to="/signin">Login</Link> or <Link to="/signup">Sign Up</Link>{' '}
+          <Link to="/signin">Sign In</Link> or <Link to="/signup">Sign Up</Link>{' '}
           for a free account to get started.
         </p>
       </div>
     );
   }
   return (
-      <div className="journal">
-        <Link to='/new'><h2>What are you grateful for today?</h2></Link>
-          {error && <div>Sorry, there was an error getting the journal entries!</div>}
-          {!error && !entries.length ? (
-              <>
-                  <h1>You don't have any journal entries yet</h1>
-                  <p>Add some!</p>
-              </>
-          ) : (
-              entries.map(entry => (
-                  <div className="journalEntry" key={entry.id}>
-                      <Link to={`/entries/${entry.id}/`}>
-                      <h3>{entry.date}</h3>
-                      </Link>
-                      <p>{entry.entry}</p>
-                  </div>
-              ))
-          )}
-      </div>
+    <div className="journal">
+      <Link to="/new">
+        <h3>{today}</h3>
+      </Link>
+      <p>What are you grateful for today?</p>
+      {error && (
+        <div>Sorry, there was an error getting the journal entries!</div>
+      )}
+      {!error && !entries.length ? (
+        <>
+          <h1>You don't have any journal entries yet</h1>
+          <p>Add some!</p>
+        </>
+      ) : (
+        entries.map(entry => (
+          <div className="journalEntry" key={entry.id}>
+            <Link to={`/entries/${entry.id}/`}>
+              <h3>{entry.date}</h3>
+            </Link>
+            <p>{entry.entry}</p>
+          </div>
+        ))
+      )}
+    </div>
   );
 }
 

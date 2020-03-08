@@ -29,7 +29,7 @@ function Edit({ match }) {
             .catch(() => {
                 setError(true);
             });
-    }, []);
+    }, [entry, url, user.token]);
 
     const handleChange = function (event) {
         event.persist();

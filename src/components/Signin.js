@@ -37,7 +37,7 @@ function SignIn(props) {
   return (
     <div>
       <h3>Sign In</h3>
-      {historyState && <h4>We're grateful that you signed up today! Please login.</h4>}
+      {historyState && <h4>We're grateful that you signed up today! Please sign in.</h4>}
       {error && (
         <h4 onClick={() => setError(false)}>
           Oops, something went wrong. Please try again!
