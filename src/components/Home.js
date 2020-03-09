@@ -9,6 +9,10 @@ function Home() {
   const [error, setError] = useState(false);
   const today = new Date().toDateString()
 
+  let filteredEntries = entries.filter(
+    entry => entry.owner === user.user.username
+  )
+
   useEffect(() => {
     if (user) {
       const url = `${APIURL}/entries/`;
@@ -56,7 +60,7 @@ function Home() {
           <p>Add some!</p>
         </>
       ) : (
-        entries.map(entry => (
+        filteredEntries.map(entry => (
           <div className="journalEntry" key={entry.id}>
             <Link to={`/entries/${entry.id}/`}>
               <h3>{entry.date}</h3>
