@@ -7,12 +7,15 @@ function Home() {
   const { user } = useContext(UserContext);
   const [entries, setEntries] = useState([]);
   const [error, setError] = useState(false);
-  const today = new Date().toDateString()
+  const today = new Date();
+  const todayFormat =
+    today.getMonth() + 1 + '-' + today.getDate() + '-' + today.getFullYear();
+  console.log(todayFormat);
 
   let filteredEntries = entries.filter(
     entry => entry.owner === user.user.username
-  )
-
+  );
+  console.log(filteredEntries);
   useEffect(() => {
     if (user) {
       const url = `${APIURL}/entries/`;
@@ -47,27 +50,36 @@ function Home() {
   }
   return (
     <div className="journal">
-      <Link to="/new">
-        <h3>{today}</h3>
-      </Link>
-      <p>What are you grateful for today?</p>
       {error && (
         <div>Sorry, there was an error getting the journal entries!</div>
       )}
       {!error && !entries.length ? (
         <>
           <h1>You don't have any journal entries yet</h1>
-          <p>Add some!</p>
+          <Link to="/new">
+            <p>Add one!</p>
+          </Link>
         </>
       ) : (
-        filteredEntries.map(entry => (
-          <div className="journalEntry" key={entry.id}>
-            <Link to={`/entries/${entry.id}/`}>
-              <h3>{entry.date}</h3>
-            </Link>
-            <p>{entry.entry}</p>
-          </div>
-        ))
+        <>
+          {!filteredEntries[0].date === todayFormat && (
+            <>
+              <Link to="/new">
+                <h3>{todayFormat}</h3>
+              </Link>
+              <p>What are you grateful for today?</p>
+            </>
+          )}
+
+          {filteredEntries.map(entry => (
+            <div className="journalEntry" key={entry.id}>
+              <Link to={`/entries/${entry.id}/`}>
+                <h3>{entry.date}</h3>
+              </Link>
+              <p>{entry.entry}</p>
+            </div>
+          ))}
+        </>
       )}
     </div>
   );
