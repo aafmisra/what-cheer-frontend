@@ -3,9 +3,10 @@ import { Redirect } from 'react-router-dom';
 import AuthForm from './AuthForm';
 import { UserContext } from '../UserContext';
 import { APIURL } from '../config';
+import GoogleLogin from "react-google-login";
 
 function SignIn(props) {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext || null);
   const { state: historyState } = props.history.location;
   const initialState = {
     name: historyState ? historyState.name : '',
@@ -15,6 +16,10 @@ function SignIn(props) {
   const url = `${APIURL}/token-auth/`;
   const [credentials, setCredentials] = useState(initialState);
   const [error, setError] = useState(false);
+  const responseGoogle = response => {
+    console.log(response);
+  };
+
   const handleChange = event => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
   };
@@ -37,7 +42,9 @@ function SignIn(props) {
   return (
     <div>
       <h3>Sign In</h3>
-      {historyState && <h4>We're grateful that you signed up today! Please sign in.</h4>}
+      {historyState && (
+        <h4>We're grateful that you signed up today! Please sign in.</h4>
+      )}
       {error && (
         <h4 onClick={() => setError(false)}>
           Oops, something went wrong. Please try again!
@@ -47,6 +54,13 @@ function SignIn(props) {
         credentials={credentials}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+      />
+      <GoogleLogin
+        clientId="90068940670-po14r078ldl92olooa6rge1r3imprp15.apps.googleusercontent.com"
+        buttonText="Login"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={"single_host_origin"}
       />
     </div>
   );
