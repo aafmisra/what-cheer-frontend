@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 function Entries({ entries }) {
   const { user } = useContext(UserContext);
   const [searchStr, setSearchStr] = useState('');
-  const today = new Date();
-  const todayFormat =
-    today.getMonth() + 1 + '-' + today.getDate() + '-' + today.getFullYear();
+  const today = new Date().toLocaleDateString();
+  // const todayFormat =
+  //   today.getMonth() + '-' + today.getDate() + '-' + today.getFullYear();
   let filteredEntries = entries.filter(
     entry => entry.owner === user.user.username
   );
@@ -20,7 +20,7 @@ function Entries({ entries }) {
     <>
       <div className="search">
         <img
-          src={process.env.PUBLIC_URL + '/searchicon.svg'}
+          src={process.env.PUBLIC_URL + "/searchicon.svg"}
           alt="search icon"
         />
         <input
@@ -31,14 +31,14 @@ function Entries({ entries }) {
         />
       </div>
 
-      {!filteredEntries[0].date === todayFormat && (
+      {/* {!filteredEntries[0].date === todayFormat && ( */}
         <>
           <Link to="/new">
-            <h3>{todayFormat}</h3>
+            <h3>{today}</h3>
           </Link>
           <p>What are you grateful for today?</p>
         </>
-      )}
+      {/* )} */}
 
       {searchStr &&
         filteredEntries
@@ -46,7 +46,7 @@ function Entries({ entries }) {
           .map(entry => (
             <div className="journalEntry" key={entry.id}>
               <Link to={`/entries/${entry.id}/`}>
-                <h3>{entry.date}</h3>
+                <h3>{new Date(entry.date).toLocaleDateString()}</h3>
               </Link>
               <p>{entry.entry}</p>
             </div>
@@ -56,7 +56,7 @@ function Entries({ entries }) {
         filteredEntries.map(entry => (
           <div className="journalEntry" key={entry.id}>
             <Link to={`/entries/${entry.id}/`}>
-              <h3>{entry.date}</h3>
+              <h3>{new Date(entry.date).toDateString()}</h3>
             </Link>
             <p>{entry.entry}</p>
           </div>

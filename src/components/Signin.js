@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import AuthForm from './AuthForm';
 import { UserContext } from '../UserContext';
 import { APIURL } from '../config';
-import GoogleLogin from "react-google-login";
+
 
 function SignIn(props) {
   const { user, setUser } = useContext(UserContext || null);
@@ -16,9 +16,7 @@ function SignIn(props) {
   const url = `${APIURL}/token-auth/`;
   const [credentials, setCredentials] = useState(initialState);
   const [error, setError] = useState(false);
-  const responseGoogle = response => {
-    console.log(response);
-  };
+
 
   const handleChange = event => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
@@ -55,13 +53,7 @@ function SignIn(props) {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
-      <GoogleLogin
-        clientId="90068940670-po14r078ldl92olooa6rge1r3imprp15.apps.googleusercontent.com"
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={"single_host_origin"}
-      />
+
     </div>
   );
 }

@@ -7,10 +7,10 @@ import Form from './Form'
 function New() {
     const { user } = useContext(UserContext);
     const initialState = {
-        owner: '',
-        date: '',
-        entry: ''
-    }
+      owner: "",
+      date: new Date().toLocaleDateString(),
+      entry: ""
+    };
     const [entry, setEntry] = useState(initialState);
     const [prompt, setPrompt] = useState(null);
     const [createdId, setCreatedId] = useState(null);
