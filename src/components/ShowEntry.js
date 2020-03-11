@@ -31,7 +31,7 @@ function ShowEntry({ match }) {
     <div>
       {error && <p>Sorry something's gone wrong.</p>}
       {!error && entry && (
-          <div>
+          <div className="showJournal">
               <h3>{entry.date}</h3>
               <p>{entry.entry}</p>
           <Link to={`/entries/${match.params.id}/edit/`}>Edit</Link>
