@@ -32,12 +32,12 @@ function Entries({ entries }) {
       </div>
 
       {/* {!filteredEntries[0].date === todayFormat && ( */}
-        <>
-          <Link to="/new">
-            <h3>{today}</h3>
-          </Link>
-          <p>What are you grateful for today?</p>
-        </>
+      <>
+        <Link to="/new">
+    <p>What are you grateful for today?</p>
+        </Link>
+        
+      </>
       {/* )} */}
 
       {searchStr &&
@@ -46,7 +46,9 @@ function Entries({ entries }) {
           .map(entry => (
             <div className="journalEntry" key={entry.id}>
               <Link to={`/entries/${entry.id}/`}>
-                <h3>{new Date(entry.date).toLocaleDateString()}</h3>
+                <h3>
+                  {new Date(new Date(entry.date).setHours(24)).toDateString()}
+                </h3>
               </Link>
               <p>{entry.entry}</p>
             </div>
@@ -56,7 +58,9 @@ function Entries({ entries }) {
         filteredEntries.map(entry => (
           <div className="journalEntry" key={entry.id}>
             <Link to={`/entries/${entry.id}/`}>
-              <h3>{new Date(entry.date).toDateString()}</h3>
+              <h3>
+                {new Date(new Date(entry.date).setHours(24)).toDateString()}
+              </h3>
             </Link>
             <p>{entry.entry}</p>
           </div>

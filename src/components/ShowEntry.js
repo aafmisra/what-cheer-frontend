@@ -32,7 +32,7 @@ function ShowEntry({ match }) {
       {error && <p>Sorry something's gone wrong.</p>}
       {!error && entry && (
         <div className="showJournal">
-          <h3>{console.log(entry.date)}{new Date(entry.date).toLocaleDateString()}</h3>
+          <h3>{new Date(new Date(entry.date).setHours(24)).toDateString()}</h3>
           <p>{entry.entry}</p>
           <Link to={`/entries/${match.params.id}/edit/`}>Edit</Link>
         </div>
