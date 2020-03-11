@@ -2,20 +2,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../UserContext';
 import { APIURL } from '../config';
 import { Link } from 'react-router-dom';
+import Entries from './Entries';
 
 function Home() {
   const { user } = useContext(UserContext);
   const [entries, setEntries] = useState([]);
   const [error, setError] = useState(false);
-  const today = new Date();
-  const todayFormat =
-    today.getMonth() + 1 + '-' + today.getDate() + '-' + today.getFullYear();
-  console.log(todayFormat);
 
-  let filteredEntries = entries.filter(
-    entry => entry.owner === user.user.username
-  );
-  console.log(filteredEntries);
   useEffect(() => {
     if (user) {
       const url = `${APIURL}/entries/`;
@@ -48,6 +41,7 @@ function Home() {
       </div>
     );
   }
+
   return (
     <div className="journal">
       {error && (
@@ -61,25 +55,7 @@ function Home() {
           </Link>
         </>
       ) : (
-        <>
-          {!filteredEntries[0].date === todayFormat && (
-            <>
-              <Link to="/new">
-                <h3>{todayFormat}</h3>
-              </Link>
-              <p>What are you grateful for today?</p>
-            </>
-          )}
-
-          {filteredEntries.map(entry => (
-            <div className="journalEntry" key={entry.id}>
-              <Link to={`/entries/${entry.id}/`}>
-                <h3>{entry.date}</h3>
-              </Link>
-              <p>{entry.entry}</p>
-            </div>
-          ))}
-        </>
+        <Entries entries={entries} />
       )}
     </div>
   );
