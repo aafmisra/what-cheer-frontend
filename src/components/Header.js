@@ -11,7 +11,7 @@ function Header() {
         <img
           src={process.env.PUBLIC_URL + '/logo.svg'}
           alt="bookbear logo"
-          className="logo"
+          className="logoImg"
         />
         <Link to="/">
           <h1>What Cheer!</h1>

@@ -2,7 +2,8 @@ import React, { useState, useContext, useEffect } from 'react'
 import { Redirect } from 'react-router-dom';
 import { APIURL } from '../config';
 import { UserContext } from '../UserContext';
-import Form from './Form'
+import { Link } from 'react-router-dom';
+import Form from './Form';
 
 function Edit({ match }) {
     const { user } = useContext(UserContext);
@@ -87,11 +88,18 @@ function Edit({ match }) {
 
 
     return (
-        <div>
-            <Form entry={entry} handleChange={handleChange} handleSubmit={handleSubmit} />
-            <button onClick={deleteEntry}>Delete</button>
-        </div>
-    )
+      <div>
+        <Form
+          entry={entry}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
+        <button onClick={deleteEntry}>Delete</button>
+        <Link to="/" className="button">
+          Cancel
+        </Link>
+      </div>
+    );
 }
 
 export default Edit

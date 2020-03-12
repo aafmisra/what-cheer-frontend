@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Entries({ entries }) {
   const { user } = useContext(UserContext);
   const [searchStr, setSearchStr] = useState('');
-  const today = new Date().toLocaleDateString();
+  // const today = new Date();
   // const todayFormat =
   //   today.getMonth() + '-' + today.getDate() + '-' + today.getFullYear();
   let filteredEntries = entries.filter(
@@ -32,13 +32,10 @@ function Entries({ entries }) {
       </div>
 
       {/* {!filteredEntries[0].date === todayFormat && ( */}
-      <>
         <Link to="/new">
-    <p>What are you grateful for today?</p>
+          <h3>What are you grateful for today?</h3>
         </Link>
-        
-      </>
-      {/* )} */}
+       {/* )} */}
 
       {searchStr &&
         filteredEntries

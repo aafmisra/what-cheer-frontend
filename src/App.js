@@ -59,7 +59,31 @@ function App() {
             />
           </Switch>
         </main>
-        <footer></footer>
+        <footer>
+          <p>
+            Made by Asha Misra and <br></br>Chris Wargo 2020{' '}
+            <span role="img" aria-label="sun emoji">
+              &#9728;&#65039;
+            </span>
+          </p>
+          <div>
+            <a
+              href="https://github.com/aafmisra/what-cheer-frontend"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              frontend repo on GitHub
+            </a>
+            <br></br>
+            <a
+              href="https://github.com/chrisrw/What-Cheer-Back-End"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              backend repo on GitHub
+            </a>
+          </div>
+        </footer>
       </UserContext.Provider>
     </div>
   );
