@@ -37,6 +37,8 @@ function ShowEntry({ match }) {
           {entry.image && (
             <img src={entry.image} alt={`for entry on ${entry.date}`} />
           )}
+          <br></br>
+          <br></br>
           <Link to={`/entries/${match.params.id}/edit/`}>Edit</Link>
         </div>
       )}
