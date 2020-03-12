@@ -12,7 +12,7 @@ function New() {
   const initialState = {
     owner: '',
     date: new Date().toISOString().substring(0,10),
-    entry: ''
+    entry: '',
   };
   const [entry, setEntry] = useState(initialState);
   const [createdId, setCreatedId] = useState(null);

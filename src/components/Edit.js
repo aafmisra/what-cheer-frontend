@@ -4,6 +4,7 @@ import { APIURL } from '../config';
 import { UserContext } from '../UserContext';
 import { Link } from 'react-router-dom';
 import Form from './Form';
+import axios from 'axios';
 
 function Edit({ match }) {
     const { user } = useContext(UserContext);
@@ -41,22 +42,24 @@ function Edit({ match }) {
 
     function handleSubmit(event) {
         event.preventDefault();
-
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json',
-                Authorization: `JWT ${user.token}`
-            },
-            body: JSON.stringify(entry)
+        const formData = new FormData(event.target);
+        axios({
+          url,
+          method: 'PUT',
+          contentType: false,
+          processData: false,
+          headers: {
+            'Authorization': `JWT ${user.token}`,
+            'Content-Type': 'multipart/form-data'
+          },
+          data: formData
         })
-            .then(response => response.json())
-            .then(data => {
-                setEdited(data.id);
-            })
-            .catch(() => {
-                setError(true);
-            });
+          .then(data => {
+            setEdited(data.id);
+          })
+          .catch(() => {
+            setError(true);
+          });
     }
 
     // deletes entry

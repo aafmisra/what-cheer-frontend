@@ -34,6 +34,9 @@ function ShowEntry({ match }) {
         <div className="showJournal">
           <h3>{new Date(new Date(entry.date).setHours(24)).toDateString()}</h3>
           <p>{entry.entry}</p>
+          {entry.image && (
+            <img src={entry.image} alt={`for entry on ${entry.date}`} />
+          )}
           <Link to={`/entries/${match.params.id}/edit/`}>Edit</Link>
         </div>
       )}

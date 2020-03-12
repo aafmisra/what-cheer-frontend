@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom';
 function Entries({ entries }) {
   const { user } = useContext(UserContext);
   const [searchStr, setSearchStr] = useState('');
-  // const today = new Date();
-  // const todayFormat =
-  //   today.getMonth() + '-' + today.getDate() + '-' + today.getFullYear();
+
   let filteredEntries = entries.filter(
     entry => entry.owner === user.user.username
   );
@@ -20,7 +18,7 @@ function Entries({ entries }) {
     <>
       <div className="search">
         <img
-          src={process.env.PUBLIC_URL + "/searchicon.svg"}
+          src={process.env.PUBLIC_URL + '/searchicon.svg'}
           alt="search icon"
         />
         <input
@@ -31,11 +29,11 @@ function Entries({ entries }) {
         />
       </div>
 
-      {/* {!filteredEntries[0].date === todayFormat && ( */}
-        <Link to="/new">
-          <h3>What are you grateful for today?</h3>
-        </Link>
-       {/* )} */}
+     
+      <Link to="/new">
+        <h3>What are you grateful for today?</h3>
+      </Link>
+    
 
       {searchStr &&
         filteredEntries
@@ -48,6 +46,12 @@ function Entries({ entries }) {
                 </h3>
               </Link>
               <p>{entry.entry}</p>
+              {entry.image && (
+                <img
+                  src={process.env.PUBLIC_URL + '/picture.svg'}
+                  alt={`for entry on ${entry.date}`}
+                />
+              )}
             </div>
           ))}
 
@@ -60,6 +64,12 @@ function Entries({ entries }) {
               </h3>
             </Link>
             <p>{entry.entry}</p>
+            {entry.image && (
+              <img
+                src={process.env.PUBLIC_URL + '/picture.svg'}
+                alt={`for entry on ${entry.date}`}
+              />
+            )}
           </div>
         ))}
     </>

@@ -1,68 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# What Cheer :sunny:
 
-## Available Scripts
+![BookBear books page](https://i.imgur.com/9q5FEbh.png)
+![BookBear details page](https://i.imgur.com/y95iACP.png)
 
-In the project directory, you can run:
+## About What Cheer
 
-### `npm start`
+What Cheer is a gratitude journal. Gratitude journaling has shown an ability to improve the author’s happiness and life satisfaction, reduce stress levels, and reduce depressive symptoms. We are constantly bombarded with negativity from our TVs, our news feeds, and the people we interact with daily. In today’s fast-paced world, What Cheer lets users slow down, practice mindfulness, and reflect on the positive aspects of their lives. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+It was made by:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- [Asha Misra](https://github.com/aafmisra)
+- [Chris Wargo](https://github.com/chrisrw/)
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+BookBear has full CRUD capability. Users can see, add, edit, and delete books. Users can add their own ratings and reviews to the books they add to their collection. 
 
-### `npm run build`
+### Fully Responsive
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![BookBear mobile](https://i.imgur.com/nNny3s9.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+BookBear is fully responsive accross computer, tablet, and phone screens.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies Used
 
-### `npm run eject`
+BookBear is a MERN app. The frontend was built with ReactJS, including React hooks, React router, and Jest/Enzyme for testing. The front end is deployed to Heroku.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You can see the backend repo [here](https://github.com/jpettett/book-bear-api).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installation Instructions
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Fork and clone this repo to download your local copy of the files. Install dependencies with ```npm```. Use ```yarn start``` or ```npm start``` to launch the development server.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Visit the backend repo, download files and dependencies and use ```nodemon``` to run the server locally. Run ```node db/seed.js``` to seed your local MongoDB database. 
 
-## Learn More
+## Contribution
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Please submit an issue on this repo if you find a bug in the code. To make suggestions on features or other behavior, please make a pull request. Thanks!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Known Bugs & Future Updates
 
-### Code Splitting
+A user authentication model is currently in the works which will add ownership between the user and the book database. The team is excited to learn more about password authentication and hashing!
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Gratitude 
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The BookBear team is eternally grateful to Jennifer Meade for her expert guidance throughout this project.
