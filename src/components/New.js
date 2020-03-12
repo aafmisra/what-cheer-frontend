@@ -4,13 +4,14 @@ import { APIURL } from '../config';
 import { UserContext } from '../UserContext';
 import { Link } from 'react-router-dom';
 import Form from './Form';
+import axios from 'axios';
 
 function New() {
   const { user } = useContext(UserContext);
   const [prompt, setPrompt] = useState(null);
   const initialState = {
     owner: '',
-    date: new Date().toLocaleDateString(),
+    date: new Date().toISOString().substring(0,10),
     entry: ''
   };
   const [entry, setEntry] = useState(initialState);
@@ -27,17 +28,19 @@ function New() {
 
   function handleSubmit(event) {
     event.preventDefault();
-
+    const formData = new FormData(event.target)
     const url = `${APIURL}/entries/`;
-    fetch(url, {
+    axios({
+      url,
       method: 'POST',
+      contentType: false,
+      processData: false,
       headers: {
-        'content-type': 'application/json',
-        Authorization: `JWT ${user.token}`
+        'Authorization': `JWT ${user.token}`,
+        'Content-Type':'multipart/form-data'
       },
-      body: JSON.stringify(entry)
+      data: formData
     })
-      .then(response => response.json())
       .then(data => {
         setCreatedId(data.id);
       })
