@@ -48,4 +48,4 @@ Our image upload feature is not perfect. For some reason that we have spent hour
 
 ## Gratitude 
 
-Asha and Chris are going to dedicate some very long gratitude journal entries to Jennifer Meade. Without her expertise and patience, we wouldn't have made it as far as we did. Hou Chia's regular standup meetings kept us motivated. Thanks to Esin Saribudak, who shared tutorials that helped us with architecting the frontend and deploying the backend. We are also indebted to many of our cohort-mates, who helped us work out bugs and commisserated with us through this challenging project.
+Asha and Chris are going to dedicate some very long gratitude journal entries to Jennifer Meade. Without her expertise and patience, we wouldn't have made it as far as we did. Hou Chia's regular standup meetings kept us motivated. Thanks to Esin Saribudak, who shared tutorials that helped us with architecting the frontend and deploying the backend. We are also indebted to many of our cohort-mates, who helped us work out bugs and commiserated with us through this challenging project.

@@ -54,8 +54,8 @@ function Edit({ match }) {
           },
           data: formData
         })
-          .then(data => {
-            setEdited(data.id);
+          .then(response => {
+            setEdited(response.data.id);
           })
           .catch(() => {
             setError(true);

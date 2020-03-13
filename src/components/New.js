@@ -41,8 +41,8 @@ function New() {
       },
       data: formData
     })
-      .then(data => {
-        setCreatedId(data.id);
+      .then(response => {
+        setCreatedId(response.data.id);
       })
       .catch(() => {
         setError(true);
