@@ -3,19 +3,22 @@ import { UserContext } from '../UserContext';
 import { Link } from 'react-router-dom';
 
 function Entries({ entries }) {
+  // get access to the logged-in user, set hooks
+
   const { user } = useContext(UserContext);
   const [searchStr, setSearchStr] = useState('');
-
+  //only show entries that belong to this user
   let filteredEntries = entries.filter(
     entry => entry.owner === user.user.username
   );
-
+  // updates state of the search string based on user input
   function handleChange(event) {
     setSearchStr(event.target.value);
   }
 
   return (
     <>
+    {/* search icon and input */}
       <div className="search">
         <img
           src={process.env.PUBLIC_URL + '/searchicon.svg'}
@@ -28,13 +31,11 @@ function Entries({ entries }) {
           onChange={handleChange}
         />
       </div>
-
-     
+    {/* prompts user to add a new entry */}
       <Link to="/new">
         <h3>What are you grateful for today?</h3>
       </Link>
-    
-
+    {/* if the user made a search, show only entries that match */}
       {searchStr &&
         filteredEntries
           .filter(entry => entry.entry.includes(searchStr))
@@ -54,7 +55,7 @@ function Entries({ entries }) {
               )}
             </div>
           ))}
-
+    {/* show all entries in reverse order (most recent first) */}
       {!searchStr &&
         filteredEntries.map(entry => (
           <div className="journalEntry" key={entry.id}>

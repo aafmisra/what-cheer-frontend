@@ -17,6 +17,7 @@ function Header() {
           <h1>What Cheer!</h1>
         </Link>
       </div>
+      {/* show different buttons based on whether or not we have a user logged in */}
       {user && (
         <nav>
           <span>{`hello, ${user.user.username}!`}</span>

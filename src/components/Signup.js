@@ -13,9 +13,16 @@ function Signup() {
   const [credentials, setCredentials] = useState(initialState);
   const [redirect, setRedirect] = useState(null);
   const [error, setError] = useState(false);
+
+  //update state based on user input
   const handleChange = event => {
-    setCredentials({ ...credentials, [event.target.name]: event.target.value });
+    setCredentials({
+      ...credentials,
+      [event.target.name]: event.target.value
+    });
   };
+
+  // creates user
   const handleSubmit = event => {
     event.preventDefault();
     fetch(url, {
@@ -29,6 +36,7 @@ function Signup() {
       .then(setRedirect)
       .catch(setError);
   };
+  //redirects to sign in page so user can get a token
   if (redirect) {
     return (
       <Redirect

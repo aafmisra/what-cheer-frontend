@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-
+// this form gets rendered in both SignIn and SignUp, which pass down the props
 
 function AuthForm({ credentials, handleChange, handleSubmit }) {
   const location = useLocation();

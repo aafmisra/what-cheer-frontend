@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom';
 import Entries from './Entries';
 
 function Home() {
+  // get access to the logged-in user, set hooks
+
   const { user } = useContext(UserContext);
   const [entries, setEntries] = useState([]);
   const [error, setError] = useState(false);
-
+  //get all the entries on page load
   useEffect(() => {
     if (user) {
       const url = `${APIURL}/entries/`;
@@ -30,6 +32,7 @@ function Home() {
     }
   }, [user]);
 
+  //renders if user is not logged in
   if (!user) {
     return (
       <div>
@@ -42,6 +45,7 @@ function Home() {
     );
   }
 
+  //renders if user is logged in
   return (
     <div className="journal">
       {error && (

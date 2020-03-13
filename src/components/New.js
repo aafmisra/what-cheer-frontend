@@ -7,18 +7,21 @@ import Form from './Form';
 import axios from 'axios';
 
 function New() {
+  // get access to the logged-in user, set hooks
+
   const { user } = useContext(UserContext);
   const [prompt, setPrompt] = useState(null);
   const initialState = {
     owner: '',
-    date: new Date().toISOString().substring(0,10),
-    entry: '',
+    date: new Date().toISOString().substring(0, 10),
+    entry: ''
   };
   const [entry, setEntry] = useState(initialState);
   const [createdId, setCreatedId] = useState(null);
   const [error, setError] = useState(false);
   const [promptError, setPromptError] = useState(false);
 
+  //update state based on user input
   const handleChange = function(event) {
     event.persist();
     const { name, value } = event.target;
@@ -26,9 +29,10 @@ function New() {
     setEntry({ ...entry, [name]: value });
   };
 
+  // make a POST request to the api to add the new entry
   function handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.target)
+    const formData = new FormData(event.target);
     const url = `${APIURL}/entries/`;
     axios({
       url,
@@ -36,8 +40,8 @@ function New() {
       contentType: false,
       processData: false,
       headers: {
-        'Authorization': `JWT ${user.token}`,
-        'Content-Type':'multipart/form-data'
+        Authorization: `JWT ${user.token}`,
+        'Content-Type': 'multipart/form-data'
       },
       data: formData
     })
@@ -49,6 +53,7 @@ function New() {
       });
   }
 
+  //generates a random number to get a prompt on button click
   function getPrompt() {
     let id = Math.floor(Math.random() * 11 + 1);
     const url = `${APIURL}/prompts/${id}/`;
@@ -67,7 +72,7 @@ function New() {
       });
   }
 
-  //if id was created successfully, redirect user back to homepage
+  //if entry was created successfully, redirect user back to homepage
   if (createdId) {
     return (
       <Redirect
@@ -81,6 +86,7 @@ function New() {
     );
   }
 
+  //in case there's an error generating a prompt
   if (promptError) {
     return <div>Oops, we're fresh out of ideas!</div>;
   }
@@ -90,6 +96,7 @@ function New() {
     return <div>Oops, there was a problem adding the journal entry.</div>;
   }
 
+  // renders if the user got a prompt
   if (prompt) {
     return (
       <div>
@@ -107,6 +114,7 @@ function New() {
     );
   }
 
+  //renders on page load/without prompt
   return (
     <div>
       <Form

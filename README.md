@@ -42,9 +42,9 @@ Visit the backend repo, download files and install dependencies with ```pipenv``
 
 Please submit an issue on this repo if you find a bug in the code. To make suggestions on features or other behavior, please make a pull request. Thanks!
 
-## Known Bugs & Future Updates
+## Future Updates
 
-Our image upload feature is not perfect. For some reason that we have spent hours on the internet trying to nail down, our Django model does not honor the "blank=True" attribute on our image field, so images are currently required with journal entry creation. This was not our original intent, and it's something we'd like to address in the future. 
+In the future we'd like to explore adding social authentication, file download so users can back up their journals, and an "add a song from Spotify" feature.
 
 ## Gratitude 
 

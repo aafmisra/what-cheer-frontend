@@ -4,7 +4,6 @@ import AuthForm from './AuthForm';
 import { UserContext } from '../UserContext';
 import { APIURL } from '../config';
 
-
 function SignIn(props) {
   const { user, setUser } = useContext(UserContext || null);
   const { state: historyState } = props.history.location;
@@ -17,10 +16,11 @@ function SignIn(props) {
   const [credentials, setCredentials] = useState(initialState);
   const [error, setError] = useState(false);
 
-
+  //update state based on user input
   const handleChange = event => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
   };
+  // POST credentials to api to get back a token
   const handleSubmit = event => {
     event.preventDefault();
     fetch(url, {
@@ -34,6 +34,7 @@ function SignIn(props) {
       .then(setUser)
       .catch(setError);
   };
+  // sends user to homepage once logged in
   if (user) {
     return <Redirect to="/" />;
   }
@@ -53,7 +54,6 @@ function SignIn(props) {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
-
     </div>
   );
 }

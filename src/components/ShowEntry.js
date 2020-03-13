@@ -1,17 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
-import { UserContext } from "../UserContext";
-import { APIURL } from "../config";
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../UserContext';
+import { APIURL } from '../config';
 import { Link } from 'react-router-dom';
 
 function ShowEntry({ match }) {
+  // get access to the logged-in user, set hooks
   const { user } = useContext(UserContext);
   const [entry, setEntry] = useState(null);
   const [error, setError] = useState(false);
 
+  //get the entry that was clicked on page load
   useEffect(() => {
     const url = `${APIURL}/entries/${match.params.id}/`;
     fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
         Authorization: `JWT ${user.token}`
       }
@@ -24,12 +26,14 @@ function ShowEntry({ match }) {
         setError(true);
       });
   }, [user, match]);
+  //loading screen
   if (!entry) {
     return <div>Loading...</div>;
   }
+  //render entry details on page load
   return (
     <div>
-      {error && <p>Sorry something's gone wrong.</p>}
+      {error && <p>Oops, something's gone wrong.</p>}
       {!error && entry && (
         <div className="showJournal">
           <h3>{new Date(new Date(entry.date).setHours(24)).toDateString()}</h3>
