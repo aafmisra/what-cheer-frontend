@@ -163,11 +163,16 @@ footer {
   align-items: center;
   justify-content: space-between;
   font-variant: small-caps;
-  font-size: 18px;
+  font-size: 14px;
   padding: 10px 20px;
   margin-top: 10px;
   border-top: 2px dotted black;
 }
+
+footer a {
+  font-size: 18px;
+}
+
 footer a, p a {
   color:black;
   text-decoration: underline;
