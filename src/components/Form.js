@@ -13,7 +13,7 @@ function Form({ entry, handleChange, handleSubmit }) {
       />
       <textarea
         cols="50"
-        rows="20"
+        rows="16"
         onChange={handleChange}
         name="entry"
         value={entry.entry}

@@ -84,7 +84,7 @@ function Edit({ match }) {
     return <Redirect to="/" />;
   }
 
-  // goes back to ShowEntry if book was updated
+  // goes back to ShowEntry if entry was updated
   if (edited) {
     return <Redirect to={`/entries/${match.params.id}/`} />;
   }
@@ -94,14 +94,21 @@ function Edit({ match }) {
     return <div>Oops, there was a problem updating the journal entry.</div>;
   }
 
-  //render Form with props along with delete and cencel buttons
+  //render Form with props along with delete and cancel buttons
   return (
     <div>
+      {entry.image && (
+        <p className="editMsg">
+          *Your photo is still saved with this entry. To add a different
+          picture, choose a new file below.*
+        </p>
+      )}
       <Form
         entry={entry}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
+      
       <button onClick={deleteEntry}>Delete</button>
       <Link to="/" className="button">
         Cancel

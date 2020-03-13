@@ -16,6 +16,8 @@ function Entries({ entries }) {
     setSearchStr(event.target.value);
   }
 
+  let sortedEntries = filteredEntries.sort((a, b) => (a.date > b.date) ? -1 : 1)
+
   return (
     <>
     {/* search icon and input */}
@@ -37,7 +39,7 @@ function Entries({ entries }) {
       </Link>
     {/* if the user made a search, show only entries that match */}
       {searchStr &&
-        filteredEntries
+        sortedEntries
           .filter(entry => entry.entry.includes(searchStr))
           .map(entry => (
             <div className="journalEntry" key={entry.id}>
@@ -57,7 +59,7 @@ function Entries({ entries }) {
           ))}
     {/* show all entries in reverse order (most recent first) */}
       {!searchStr &&
-        filteredEntries.map(entry => (
+        sortedEntries.map(entry => (
           <div className="journalEntry" key={entry.id}>
             <Link to={`/entries/${entry.id}/`}>
               <h3>

@@ -10,7 +10,7 @@ function Header() {
       <div className="logo">
         <img
           src={process.env.PUBLIC_URL + '/logo.svg'}
-          alt="bookbear logo"
+          alt="what cheer logo"
           className="logoImg"
         />
         <Link to="/">
